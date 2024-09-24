@@ -1,9 +1,13 @@
 #![no_std]
 #![no_main]
 
+use core::arch::global_asm;
+
+global_asm!(include_str!("entry.S"));
+
 mod lang_items;
 
 #[no_mangle]
-extern "C" fn _start() -> ! {
+fn rust_main() -> ! {
     loop {}
 }
