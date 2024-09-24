@@ -1,4 +1,8 @@
-.PHONY : all build run clean
+.PHONY : all build run debug connect clean setup
+
+RUSTUP = rustup
+CARGO = cargo
+ARCH = loongarch64-unknown-none
 
 KERNEL = kernel
 
@@ -19,6 +23,13 @@ connect:
 
 clean:
 	@cd $(KERNEL) && make -s clean
+
+setup:
+	@$(RUSTUP) target add $(ARCH)
+	@$(RUSTUP) default nightly-2024-07-26
+	@$(CARGO) install cargo-binutils
+	@$(RUSTUP) component add rust-src
+	@$(RUSTUP) component add llvm-tools-preview
 
 %:
 	@cd $(KERNEL) && make -s $@

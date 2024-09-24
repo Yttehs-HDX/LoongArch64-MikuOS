@@ -4,6 +4,12 @@ LoongArch64 OS written in Rust
 
 ## Usage
 
+### Setup Rust Develop Environment
+
+```bash
+make setup
+```
+
 ### Build
 
 ```bash
