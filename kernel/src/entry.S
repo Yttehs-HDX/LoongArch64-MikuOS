@@ -3,7 +3,7 @@
 
 _start:
     # Create a stack
-    li.d $sp, 0x98000000
+    li.d $sp, 0x98
     slli.d $sp, $sp, 24
 
     # Call rust_main

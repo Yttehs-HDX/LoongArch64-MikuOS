@@ -8,7 +8,7 @@ TARGET = kernel
 
 QEMU = qemu-system-loongarch64
 MACHINE = virt
-QEMU_ARGS = -bios target/$(ARCH)/$(BUILD_TYPE)/$(TARGET).bin \
+QEMU_ARGS = -kernel target/$(ARCH)/$(BUILD_TYPE)/$(TARGET) \
 	-machine $(MACHINE) \
 	-nographic
 
@@ -19,10 +19,7 @@ all: run
 build:
 	@$(CARGO) build $(CARGO_FLAGS)
 
-objcopy: build
-	@$(CARGO) objcopy $(CARGO_FLAGS) -- -O binary target/$(ARCH)/$(BUILD_TYPE)/$(TARGET).bin
-
-run: objcopy
+run: build
 	@$(QEMU) $(QEMU_ARGS)
 
 debug:

@@ -13,7 +13,7 @@ run:
 	@cd $(KERNEL) && make -s run
 
 build:
-	@cd $(KERNEL) && make -s objcopy
+	@cd $(KERNEL) && make -s build
 
 debug:
 	@cd $(KERNEL) && make -s debug
