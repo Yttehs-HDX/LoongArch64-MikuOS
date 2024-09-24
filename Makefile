@@ -9,7 +9,7 @@ run:
 	@cd $(KERNEL) && make -s run
 
 build:
-	@cd $(KERNEL) && make -s build
+	@cd $(KERNEL) && make -s objcopy
 
 clean:
 	@cd $(KERNEL) && make -s clean
