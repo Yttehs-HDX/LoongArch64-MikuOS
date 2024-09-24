@@ -1,0 +1,6 @@
+[build]
+target = ["loongarch64-unknown-none"]
+
+rustflags = [
+    "-Clink-arg=-Tsrc/linker.ld"
+]
