@@ -9,9 +9,10 @@ pub fn uart_print_str(str: &str) {
     }
 }
 
+#[allow(unused)]
 pub fn uart_get_char() -> u8 {
     unsafe {
         while (LSR.read() & LSR_RX_READY) == 0 {};
-        return RHR.read();
+        RHR.read()
     }
 }
