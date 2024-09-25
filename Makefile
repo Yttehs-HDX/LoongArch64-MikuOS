@@ -1,4 +1,4 @@
-.PHONY : all build run debug connect clean setup
+.PHONY : all all-user build build-user run debug connect clean clean-user setup
 
 RUSTUP = rustup
 CARGO = cargo
@@ -16,11 +16,11 @@ all-user:
 run:
 	@cd $(KERNEL) && make -s run
 
-build:
+build: build-user
 	@cd $(KERNEL) && make -s build
 
 build-user:
-	@cd $(USER) && make -s build
+	@cd $(USER) && make -s objcopy
 
 debug:
 	@cd $(KERNEL) && make -s debug
