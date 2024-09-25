@@ -5,15 +5,22 @@ CARGO = cargo
 ARCH = loongarch64-unknown-none
 
 KERNEL = kernel
+USER = user
 
-all:
+all: all-user
 	@cd $(KERNEL) && make -s all
+
+all-user:
+	@cd $(USER) && make -s all
 
 run:
 	@cd $(KERNEL) && make -s run
 
 build:
 	@cd $(KERNEL) && make -s build
+
+build-user:
+	@cd $(USER) && make -s build
 
 debug:
 	@cd $(KERNEL) && make -s debug
