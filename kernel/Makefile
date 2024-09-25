@@ -32,3 +32,6 @@ connect:
 
 clean:
 	@$(CARGO) clean
+
+%:
+	@$(CARGO) $@ $(CARGO_FLAGS)

@@ -8,11 +8,12 @@ use core::arch::global_asm;
 global_asm!(include_str!("entry.S"));
 
 mod lang_items;
-mod uart;
+mod sbi;
+mod console;
 
 #[no_mangle]
 fn rust_main() -> ! {
-    uart::uart_init();
-    uprintln!("Hello, world!");
+    sbi::uart_init();
+    println!("Hello, world!");
     loop {}
 }
