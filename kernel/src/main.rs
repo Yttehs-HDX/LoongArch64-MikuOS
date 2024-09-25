@@ -9,11 +9,14 @@ global_asm!(include_str!("entry.S"));
 
 mod lang_items;
 mod sbi;
+#[macro_use]
 mod console;
+mod util;
 
 #[no_mangle]
 fn rust_main() -> ! {
     sbi::uart_init();
+    util::logger_init();
     println!("Hello, world!");
     sbi::uart_shutdown();
 }
