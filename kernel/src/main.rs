@@ -15,8 +15,21 @@ mod util;
 
 #[no_mangle]
 fn rust_main() -> ! {
+    clear_bss();
     sbi::uart_init();
     util::logger_init();
     println!("Hello, world!");
     sbi::uart_shutdown();
+}
+
+fn clear_bss() {
+    unsafe {
+        let len = ebss as usize - sbss as usize;
+        core::slice::from_raw_parts_mut(sbss as *mut u8, len).fill(0);
+    }
+}
+
+extern "C" {
+    fn sbss();
+    fn ebss();
 }

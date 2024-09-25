@@ -19,6 +19,9 @@ SECTIONS
     }
 
     .bss ALIGN(4) : {
+        sbss = .;
         *(.bss .bss.*)
+        . = ALIGN(4);
+        ebss = .;
     }
 }
