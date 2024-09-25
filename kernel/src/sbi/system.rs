@@ -1,3 +1,4 @@
+use log::{debug, info};
 use super::{DLL, DLM, IER, LCR};
 
 pub fn uart_init() {
@@ -13,5 +14,7 @@ pub fn uart_init() {
 }
 
 pub fn uart_shutdown() -> ! {
+    debug!("Shutdown");
+    info!("Press Ctrl-A X to exit");
     loop {}
 }
