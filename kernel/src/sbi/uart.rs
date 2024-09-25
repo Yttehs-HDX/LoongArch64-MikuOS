@@ -25,15 +25,3 @@ pub const SPR: *mut u8 = (UART0_ADDR + 7) as *mut u8;
 #[allow(unused)]
 pub const LSR_RX_READY: u8 = 1u8 << 0;
 pub const LSR_TX_IDEL: u8 = 1u8 << 5;
-
-pub fn uart_init() {
-    unsafe {
-        IER.write(0x00);
-        let mut lcr = LCR.read();
-        LCR.write(lcr | (1 << 7));
-        DLL.write(0x03);
-        DLM.write(0x00);
-        lcr = 0;
-        LCR.write(lcr | 3);
-    }
-}

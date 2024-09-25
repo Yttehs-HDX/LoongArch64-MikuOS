@@ -15,5 +15,5 @@ mod console;
 fn rust_main() -> ! {
     sbi::uart_init();
     println!("Hello, world!");
-    loop {}
+    sbi::uart_shutdown();
 }
