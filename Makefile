@@ -28,8 +28,11 @@ debug:
 connect:
 	@cd $(KERNEL) && make -s connect
 
-clean:
+clean: clean-user
 	@cd $(KERNEL) && make -s clean
+
+clean-user:
+	@cd $(USER) && make -s clean
 
 setup:
 	@$(RUSTUP) target add $(ARCH)
