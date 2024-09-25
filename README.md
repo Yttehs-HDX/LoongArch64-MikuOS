@@ -10,6 +10,8 @@ LoongArch64 OS written in Rust
 make setup
 ```
 
+> qemu-system-loongarch64 8.X required
+
 ### Build
 
 ```bash
@@ -19,9 +21,11 @@ make build
 ### Run
 
 ```bash
-make run
+make run LOG=<log_level>
 # or simply make
 ```
+
+> log_level option: ERROR, WARN, INFO, DEBUG, TRACE
 
 ### Debug
 
