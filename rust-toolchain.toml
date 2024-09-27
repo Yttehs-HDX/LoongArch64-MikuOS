@@ -1,2 +1,3 @@
 [toolchain]
-channel = "nightly-2024-07-26"
+targets = ["loongarch64-unknown-none"]
+channel = "nightly-2024-09-24"

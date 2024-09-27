@@ -1,13 +1,12 @@
+    .section .text.entry
     .globl _start
-    .text
-
 _start:
-    # Create a stack
-    li.d $sp, 0x98
-    slli.d $sp, $sp, 24
+    la $sp, boot_stack_top
+    bl rust_main
 
-    # Call rust_main
-    la $ra, rust_main
-    jr $ra
-
-    .end
+    .section .bss.stack
+    .globl boot_stack_lower_bound
+    .globl boot_stack_top
+boot_stack_lower_bound:
+    .space 4096 * 16
+boot_stack_top:

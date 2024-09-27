@@ -1,27 +1,63 @@
-OUTPUT_ARCH(loongarch)
+OUTPUT_ARCH(riscv)
 ENTRY(_start)
-BASE_ADDR = 0x90000000;
+BASE_ADDR = 0x9000000;
 
-SECTIONS
-{
+SECTIONS {
+    # kernel start
     . = BASE_ADDR;
+    skernel = .;
 
-    .text ALIGN(4) : {
-        *.(.text .text.*)
+    # text start
+    stext = .;
+    .text : {
+        *(.text.entry)
+        *(.text .text.*)
+        *(.stext .stext.*)
     }
 
-    .rodata ALIGN(4) : {
+    . = ALIGN(4K);
+    etext = .;
+    # text end
+
+    # rodata start
+    srodata = .;
+    .rodata : {
         *(.rodata .rodata.*)
+        *(.srodata .srodata.*)
     }
 
-    .data ALIGN(4) : {
+    . = ALIGN(4K);
+    erodata = .;
+    # rodata end
+
+    # data start
+    sdata = .;
+    .data : {
         *(.data .data.*)
+        *(.sdata .sdata.*)
     }
 
-    .bss ALIGN(4) : {
+    . = ALIGN(4K);
+    edata = .;
+    # data end
+
+    .bss : {
+        *(.bss.stack)
+
+    # bss start
         sbss = .;
         *(.bss .bss.*)
-        . = ALIGN(4);
-        ebss = .;
+        *(.sbss .sbss.*)
+    }
+
+    . = ALIGN(4K);
+    ebss = .;
+    # bss end
+
+    ekernel = .;
+    # kernel end
+
+    /DISCARD/ : {
+        *(.eh_frame)
     }
 }

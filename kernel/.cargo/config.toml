@@ -1,6 +1,7 @@
 [build]
-target = ["loongarch64-unknown-none"]
+target = "loongarch64-unknown-none"
 
+[target.loongarch64-unknown-none]
 rustflags = [
-    "-Clink-arg=-Tsrc/linker.ld"
+    "-Clink-args=-Tsrc/linker.ld", "-Cforce-frame-pointers=yes"
 ]
